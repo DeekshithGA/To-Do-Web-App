@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>To-Do List</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>📝 To-Do List 
+      <button id="themeToggle" title="Toggle Dark Mode">🌙</button>
+    </h1>
+
+    <div class="input-section">
+      <input type="text" id="taskInput" placeholder="Enter a new task..." />
+      <button id="addTaskBtn">Add</button>
+    </div>
+
+    <div class="suggestion-section">
+      <button id="suggestionBtn">💡 Suggest Task</button>
+      <ul id="suggestionDropdown" class="hidden"></ul>
+    </div>
+
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="completed">Completed</button>
+      <button class="filter-btn" data-filter="pending">Pending</button>
+    </div>
+
+    <ul id="taskList"></ul>
+
+    <div class="footer">
+      <p>Total: <span id="totalCount">0</span></p>
+      <p>Completed: <span id="completedCount">0</span></p>
+      <p>Pending: <span id="pendingCount">0</span></p>
+      <button id="clearAllBtn">Clear All</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

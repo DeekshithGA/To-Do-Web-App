@@ -1,0 +1,273 @@
+:root {
+  --bg-color: #fdf6f0;
+  --text-color: #4b3832;
+  --card-bg: #fffaf5;
+  --btn-bg: #d7a98c;
+  --remove-bg: #e57373;
+  --border-color: #e2d6cd;
+}
+
+body.dark {
+  --bg-color: #2b2b2b;
+  --text-color: #f0eae2;
+  --card-bg: #3a3a3a;
+  --btn-bg: #a07658;
+  --remove-bg: #ef5350;
+  --border-color: #555;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-color);
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  height: 100vh;
+  padding-top: 50px;
+  color: var(--text-color);
+  transition: background 0.4s, color 0.4s;
+}
+
+.container {
+  background: var(--card-bg);
+  padding: 25px 30px;
+  border-radius: 10px;
+  width: 540px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.6s ease-in-out;
+  border: 1px solid var(--border-color);
+}
+
+h1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+#themeToggle {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+.input-section {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+#taskInput {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background: var(--card-bg);
+  color: var(--text-color);
+}
+
+#addTaskBtn {
+  padding: 10px 16px;
+  background-color: var(--btn-bg);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#addTaskBtn:hover,
+#suggestionBtn:hover {
+  animation: bounceHover 0.3s ease-in-out;
+}
+
+.suggestion-section {
+  position: relative;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+#suggestionBtn {
+  background-color: var(--btn-bg);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 6px;
+}
+
+#suggestionDropdown {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  max-height: 180px;
+  overflow-y: auto;
+  width: 100%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+
+#suggestionDropdown li {
+  padding: 10px;
+  cursor: pointer;
+  color: var(--text-color);
+  border-bottom: 1px solid var(--border-color);
+  transition: background 0.2s;
+}
+
+#suggestionDropdown li:hover {
+  background-color: #f0e6dc;
+}
+
+.hidden {
+  display: none;
+}
+
+.filters {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.filter-btn {
+  margin: 0 5px;
+  padding: 6px 14px;
+  border: 1px solid var(--border-color);
+  background-color: #eee;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.filter-btn.active {
+  background-color: var(--btn-bg);
+  color: white;
+}
+
+#taskList {
+  list-style: none;
+  padding-left: 0;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  background: var(--card-bg);
+  padding: 10px 12px;
+  border: 1px solid var(--border-color);
+  margin-bottom: 10px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  animation: slideIn 0.25s ease-in-out;
+  user-select: none;
+}
+
+.task-item.completed {
+  text-decoration: line-through;
+  color: gray;
+  opacity: 0.7;
+  animation: pulse 0.4s ease;
+}
+
+.task-text {
+  flex: 1;
+  cursor: pointer;
+}
+
+.remove-btn {
+  background: var(--remove-bg);
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.remove-btn:hover {
+  background: #cc5c5c;
+}
+
+.footer {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+#clearAllBtn {
+  background-color: #888;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#clearAllBtn:hover {
+  background-color: #555;
+}
+
+.task-item.dragging {
+  opacity: 0.5;
+}
+
+.fade-out {
+  animation: fadeOut 0.3s ease-in-out forwards;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(15px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; height: 50px; }
+  to { opacity: 0; height: 0; margin: 0; padding: 0; }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes bounceHover {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+  100% { transform: translateY(0); }
+}
